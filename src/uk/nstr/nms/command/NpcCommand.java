@@ -7,10 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.*;
-import uk.nstr.nms.entity.CustomSkeleton;
-import uk.nstr.nms.entity.CustomVillager;
-import uk.nstr.nms.entity.CustomWitch;
-import uk.nstr.nms.entity.CustomZombie;
+import uk.nstr.nms.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +72,14 @@ public class NpcCommand implements CommandExecutor {
                             player.sendMessage("Spawned custom Villager.");
                             return true;
                         }
+                        if (args[1].equalsIgnoreCase("slime")) {
+                            Slime slime = CustomSlime.spawn(player.getLocation());
+                            this.entityLivings.add(slime);
+                            player.sendMessage("Spawned custom Slime.");
+                            return true;
+                        }
+                        player.sendMessage("Invalid entity type.");
+                        return true;
                     }
                     player.sendMessage("Invalid command usage!");
                     return true;
