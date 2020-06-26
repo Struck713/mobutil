@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="NMSEntities">
-    <output-path>$USER_HOME$/Desktop/Servers/Test Server 2/plugins</output-path>
-    <root id="archive" name="NMSEntities.jar">
-      <element id="module-output" name="NMSEntities" />
-      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
-    </root>
-  </artifact>
-</component>
