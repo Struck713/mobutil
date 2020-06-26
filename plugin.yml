@@ -1,0 +1,9 @@
+name: NMSEntities
+main: uk.nstr.nms.NMSEntities
+author: Struck713
+version: 1.0
+
+commands:
+  test:
+    usage: /npc <spawn/kill> (zombie/skeleton/villager/witch)
+    description: Npc spawn command
