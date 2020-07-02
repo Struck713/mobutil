@@ -4,6 +4,6 @@ author: Struck713
 version: 1.0
 
 commands:
-  test:
+  npc:
     usage: /npc <spawn/kill> (zombie/skeleton/villager/witch)
     description: Npc spawn command

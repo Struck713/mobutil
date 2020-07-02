@@ -6,21 +6,22 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
 import uk.nstr.nms.event.CustomEntityClickEvent;
+import uk.nstr.nms.navigation.MoveableEntity;
+import uk.nstr.nms.navigation.NavigationPoint;
 
-public class CustomSlime extends EntitySlime {
+public class CustomDragon extends EntityEnderDragon implements MoveableEntity {
 
-    public static Slime spawn(Location location)
+    public static EnderDragon spawn(Location location)
     {
         World mcWorld = ((CraftWorld) location.getWorld()).getHandle();
 
-        CustomSlime customEntity = new CustomSlime(mcWorld);
+        CustomDragon customEntity = new CustomDragon(mcWorld);
         customEntity.setLocation(location.getX(), location.getY(),location.getZ(), location.getYaw(), location.getPitch());
 
         ((CraftLivingEntity) customEntity.getBukkitEntity()).setRemoveWhenFarAway(false);
@@ -30,23 +31,36 @@ public class CustomSlime extends EntitySlime {
         customEntity.setCustomName("");
         customEntity.setCustomNameVisible(false);
 
-        return (Slime) customEntity.getBukkitEntity();
+        return (EnderDragon) customEntity.getBukkitEntity();
     }
 
-    public CustomSlime(World world) {
-        super(world);
-        ((Navigation)this.getNavigation()).b(true);
-        this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
-        this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
-        this.setSize(0.6F, 1.95F);
+    public static CustomDragon spawnCustom(Location location)
+    {
+        World mcWorld = ((CraftWorld) location.getWorld()).getHandle();
+
+        CustomDragon customEntity = new CustomDragon(mcWorld);
+        customEntity.setLocation(location.getX(), location.getY(),location.getZ(), location.getYaw(), location.getPitch());
+
+        ((CraftLivingEntity) customEntity.getBukkitEntity()).setRemoveWhenFarAway(false);
+
+        mcWorld.addEntity(customEntity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+
+        customEntity.setCustomName("");
+        customEntity.setCustomNameVisible(false);
+
+        return customEntity;
     }
+
+    public CustomDragon(World world) {
+        super(world);
+        this.bx = true;
+    }
+
 
     @Override
     protected void initAttributes() {
         super.initAttributes();
-        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(35.0D);
-        this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0);
-        this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(0);
+        this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(1.5D);
     }
 
     @Override
@@ -104,6 +118,52 @@ public class CustomSlime extends EntitySlime {
         this.bs().g();
     }
 
+    //stop damage
+    @Override
+    public boolean a(EntityComplexPart entitycomplexpart, DamageSource damagesource, float f) {
+        return false;
+    }
+
+    private double x;
+    private double y;
+    private double z;
+    private double speed = 1;
+
+    public void moveTo(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    @Override
+    public void moveTo(NavigationPoint point) {
+        this.moveTo(point.getX(), point.getY(), point.getZ());
+    }
+
+    @Override
+    public Location getLocation() {
+        return this.getBukkitEntity().getLocation();
+    }
+
+    @Override
+    public void m() {
+        this.a = this.x;
+        this.b = this.y;
+        this.c = this.z;
+
+        this.motX *= speed;
+        this.motY *= speed;
+        this.motZ *= speed;
+
+        this.bw = true;
+
+        super.m();
+    }
+
     //stop fire
     @Override
     public void setOnFire(int i) { }
@@ -132,6 +192,5 @@ public class CustomSlime extends EntitySlime {
     protected String bp() {
         return "";
     }
-
 
 }

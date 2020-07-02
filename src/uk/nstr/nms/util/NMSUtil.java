@@ -1,7 +1,6 @@
 package uk.nstr.nms.util;
 
 import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.entity.Zombie;
 import uk.nstr.nms.entity.*;
 
 import java.lang.reflect.Field;
@@ -15,7 +14,7 @@ public class NMSUtil {
     public static void init() {
         NMSUtil.registerEntity("custom_skeleton", 51, EntitySkeleton.class, CustomSkeleton.class);
         NMSUtil.registerEntity("custom_zombie", 54, EntityZombie.class, CustomZombie.class);
-        NMSUtil.registerEntity("custom_slime", 55, EntitySlime.class, CustomSlime.class);
+        NMSUtil.registerEntity("custom_dragon", 63, EntityEnderDragon.class, CustomDragon.class);
         NMSUtil.registerEntity("custom_witch", 66, EntityWitch.class, CustomWitch.class);
         NMSUtil.registerEntity("custom_villager", 120, EntityVillager.class, CustomVillager.class);
     }
