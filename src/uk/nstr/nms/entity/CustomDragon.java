@@ -3,6 +3,7 @@ package uk.nstr.nms.entity;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
@@ -11,9 +12,14 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
+import uk.nstr.nms.event.CustomDragonBlockEvent;
+import uk.nstr.nms.event.CustomDragonCollideEvent;
 import uk.nstr.nms.event.CustomEntityClickEvent;
 import uk.nstr.nms.navigation.MoveableEntity;
 import uk.nstr.nms.navigation.NavigationPoint;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomDragon extends EntityEnderDragon implements MoveableEntity {
 
@@ -161,8 +167,47 @@ public class CustomDragon extends EntityEnderDragon implements MoveableEntity {
 
         this.bw = true;
 
+        List<Block> blocks = getBlocksInBounds();
+        if (!blocks.isEmpty()) {
+            Bukkit.getPluginManager().callEvent(new CustomDragonBlockEvent(this, blocks));
+        }
+
         super.m();
     }
+
+    private List<org.bukkit.block.Block> getBlocksInBounds()
+    {
+        org.bukkit.World world = this.getWorld().getWorld();
+        List<Block> blocks = new ArrayList<>();
+
+        AxisAlignedBB axisAlignedBB = this.getBoundingBox();
+        int i = MathHelper.floor(axisAlignedBB.a);
+        int j = MathHelper.floor(axisAlignedBB.b);
+        int k = MathHelper.floor(axisAlignedBB.c);
+        int l = MathHelper.floor(axisAlignedBB.d);
+        int i1 = MathHelper.floor(axisAlignedBB.e);
+        int j1 = MathHelper.floor(axisAlignedBB.f);
+
+        for (int k1 = i; k1 <= l; ++k1)
+        {
+            for (int l1 = j; l1 <= i1; ++l1)
+            {
+                for (int i2 = k; i2 <= j1; ++i2)
+                {
+                    Block block = world.getBlockAt(k1, l1, i2);
+                    org.bukkit.Material type = block.getType();
+
+                    if (type != org.bukkit.Material.AIR)
+                    {
+                        blocks.add(block);
+                    }
+                }
+            }
+        }
+
+        return blocks;
+    }
+
 
     //stop fire
     @Override
@@ -170,7 +215,14 @@ public class CustomDragon extends EntityEnderDragon implements MoveableEntity {
 
     //stop collisions
     @Override
-    public void collide(Entity entity) { }
+    public void collide(Entity entity) {
+        org.bukkit.entity.Entity bukkitEntity = entity.getBukkitEntity();
+        if (!(bukkitEntity instanceof Player)) {
+            return;
+        }
+        Player player = (Player)bukkitEntity;
+        Bukkit.getPluginManager().callEvent(new CustomDragonCollideEvent(this, player));
+    }
 
     @Override
     public boolean ad() {
