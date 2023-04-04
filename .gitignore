@@ -1,3 +1,4 @@
 .idea/
 out/
 NMSEntities.iml
+.gradle

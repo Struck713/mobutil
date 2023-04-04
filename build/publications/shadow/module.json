@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "uk.nstr.nms",
+    "module": "nms-entities",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "nms-entities-1.0.jar",
+          "url": "nms-entities-1.0.jar",
+          "size": 23982,
+          "sha512": "32319b41fb64a9a68159e7eee8ff9f4d7ae767d0286414694c9d4a0d4ff6bcf337af306e7a378e55c3b82b1d9e0029d146aad921805cc441d51689236539694a",
+          "sha256": "7d8926193fd04c074f35744ca9da9633f02ace80c5e31d6a9ce3cc32648a3302",
+          "sha1": "cc4a0f610dc9ba467b9dbf86daafc34540244675",
+          "md5": "396b9e1f7c9676a90805117860ebda42"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "nms-entities-1.0.jar",
+          "url": "nms-entities-1.0.jar",
+          "size": 23982,
+          "sha512": "32319b41fb64a9a68159e7eee8ff9f4d7ae767d0286414694c9d4a0d4ff6bcf337af306e7a378e55c3b82b1d9e0029d146aad921805cc441d51689236539694a",
+          "sha256": "7d8926193fd04c074f35744ca9da9633f02ace80c5e31d6a9ce3cc32648a3302",
+          "sha1": "cc4a0f610dc9ba467b9dbf86daafc34540244675",
+          "md5": "396b9e1f7c9676a90805117860ebda42"
+        }
+      ]
+    }
+  ]
+}

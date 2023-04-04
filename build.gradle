@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'uk.nstr'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly group: 'org.spigotmc', name: 'spigot', version: '1.8.8-R0.1-SNAPSHOT'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) { publication ->
+            groupId = "uk.nstr.nms"
+            artifactId = "nms-entities"
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
