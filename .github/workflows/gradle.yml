@@ -23,3 +23,6 @@ jobs:
         run: chmod +x gradlew
       - name: Publish artifact
         run: ./gradlew publish --no-daemon
+        env:
+          USERNAME: ${{ secrets.SENTINAL_USER }}
+          TOKEN: ${{ secrets.SENTINAL_TOKEN }}

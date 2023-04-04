@@ -20,13 +20,18 @@ dependencies {
 }
 
 publishing {
+    repositories {
+        maven {
+            url = 'https://maven.pkg.github.com/Struck713/nms-entities'
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
     publications {
-        mavenJava(MavenPublication) { publication ->
-            groupId = "uk.nstr.nms"
-            artifactId = "nms-entities"
-            version = '1.0'
-
-            from components.java
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
