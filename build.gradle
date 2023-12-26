@@ -26,10 +26,10 @@ dependencies {
 publishing {
     repositories {
         maven {
-            url = 'https://maven.pkg.github.com/Struck713/nms-entities'
+            url = 'https://maven.pkg.github.com/Struck713/mobutil'
             credentials {
-                username = project.findProperty("gpr.user") ?: GITHUB_USER
-                password = project.findProperty("gpr.key") ?: GITHUB_TOKEN
+                username = System.getenv("USERNAME") ?: GITHUB_USER
+                password = System.getenv("TOKEN") ?: GITHUB_TOKEN
             }
         }
     }
