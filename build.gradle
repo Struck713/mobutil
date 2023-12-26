@@ -28,8 +28,8 @@ publishing {
         maven {
             url = 'https://maven.pkg.github.com/Struck713/mobutil'
             credentials {
-                username = System.getenv("USERNAME") ?: GITHUB_USER
-                password = System.getenv("TOKEN") ?: GITHUB_TOKEN
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
             }
         }
     }
