@@ -1,7 +1,7 @@
-package uk.nstr.nms.util;
+package dev.nstruck.mobutil.util;
 
+import dev.nstruck.mobutil.entity.*;
 import net.minecraft.server.v1_8_R3.*;
-import uk.nstr.nms.entity.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -1,5 +1,6 @@
-package uk.nstr.nms.entity;
+package dev.nstruck.mobutil.entity;
 
+import dev.nstruck.mobutil.event.CustomEntityClickEvent;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
-import uk.nstr.nms.event.CustomEntityClickEvent;
 
 public class CustomZombie extends EntityZombie {
 

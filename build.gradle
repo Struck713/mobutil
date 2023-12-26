@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'uk.nstr'
+group 'dev.nstruck'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -16,6 +16,7 @@ repositories {
 
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://repo.codemc.org/repository/nms/' }
 }
 
 dependencies {
@@ -27,8 +28,8 @@ publishing {
         maven {
             url = 'https://maven.pkg.github.com/Struck713/nms-entities'
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") ?: GITHUB_USER
+                password = project.findProperty("gpr.key") ?: GITHUB_TOKEN
             }
         }
     }

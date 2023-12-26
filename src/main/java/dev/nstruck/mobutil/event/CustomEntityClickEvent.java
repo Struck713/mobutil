@@ -1,4 +1,4 @@
-package uk.nstr.nms.event;
+package dev.nstruck.mobutil.event;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

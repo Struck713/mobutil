@@ -1,5 +1,6 @@
-package uk.nstr.nms.entity;
+package dev.nstruck.mobutil.entity;
 
+import dev.nstruck.mobutil.event.CustomEntityClickEvent;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,19 +9,17 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Villager;
+import org.bukkit.entity.Witch;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
-import uk.nstr.nms.event.CustomEntityClickEvent;
 
-public class CustomVillager extends EntityVillager {
+public class CustomWitch extends EntityWitch {
 
-    public static Villager spawn(Location location)
+    public static Witch spawn(Location location)
     {
         World mcWorld = ((CraftWorld) location.getWorld()).getHandle();
 
-        CustomVillager customEntity = new CustomVillager(mcWorld);
+        CustomWitch customEntity = new CustomWitch(mcWorld);
         customEntity.setLocation(location.getX(), location.getY(),location.getZ(), location.getYaw(), location.getPitch());
 
         ((CraftLivingEntity) customEntity.getBukkitEntity()).setRemoveWhenFarAway(false);
@@ -30,10 +29,10 @@ public class CustomVillager extends EntityVillager {
         customEntity.setCustomName("");
         customEntity.setCustomNameVisible(false);
 
-        return (Villager) customEntity.getBukkitEntity();
+        return (Witch) customEntity.getBukkitEntity();
     }
 
-    public CustomVillager(World world) {
+    public CustomWitch(World world) {
         super(world);
         ((Navigation)this.getNavigation()).b(true);
         this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
@@ -46,6 +45,7 @@ public class CustomVillager extends EntityVillager {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(35.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0);
+        this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(0);
     }
 
     @Override

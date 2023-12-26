@@ -1,5 +1,6 @@
-package uk.nstr.nms.entity;
+package dev.nstruck.mobutil.entity;
 
+import dev.nstruck.mobutil.event.CustomEntityClickEvent;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,18 +9,17 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Witch;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
-import uk.nstr.nms.event.CustomEntityClickEvent;
 
-public class CustomWitch extends EntityWitch {
+public class CustomSkeleton extends EntitySkeleton {
 
-    public static Witch spawn(Location location)
+    public static Skeleton spawn(Location location)
     {
         World mcWorld = ((CraftWorld) location.getWorld()).getHandle();
 
-        CustomWitch customEntity = new CustomWitch(mcWorld);
+        CustomSkeleton customEntity = new CustomSkeleton(mcWorld);
         customEntity.setLocation(location.getX(), location.getY(),location.getZ(), location.getYaw(), location.getPitch());
 
         ((CraftLivingEntity) customEntity.getBukkitEntity()).setRemoveWhenFarAway(false);
@@ -29,10 +29,10 @@ public class CustomWitch extends EntityWitch {
         customEntity.setCustomName("");
         customEntity.setCustomNameVisible(false);
 
-        return (Witch) customEntity.getBukkitEntity();
+        return (Skeleton) customEntity.getBukkitEntity();
     }
 
-    public CustomWitch(World world) {
+    public CustomSkeleton(World world) {
         super(world);
         ((Navigation)this.getNavigation()).b(true);
         this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
@@ -103,6 +103,15 @@ public class CustomWitch extends EntityWitch {
         this.bs().g();
     }
 
+    //stop damage
+    @Override
+    public void a(EntityLiving entityliving, float f) {
+        return;
+    }
+
+    @Override
+    public void n() { }
+
     //stop fire
     @Override
     public void setOnFire(int i) { }
@@ -131,5 +140,6 @@ public class CustomWitch extends EntityWitch {
     protected String bp() {
         return "";
     }
+
 
 }

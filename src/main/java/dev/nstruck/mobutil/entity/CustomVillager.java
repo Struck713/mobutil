@@ -1,5 +1,6 @@
-package uk.nstr.nms.entity;
+package dev.nstruck.mobutil.entity;
 
+import dev.nstruck.mobutil.event.CustomEntityClickEvent;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,18 +9,17 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
-import uk.nstr.nms.event.CustomEntityClickEvent;
 
-public class CustomSkeleton extends EntitySkeleton {
+public class CustomVillager extends EntityVillager {
 
-    public static Skeleton spawn(Location location)
+    public static Villager spawn(Location location)
     {
         World mcWorld = ((CraftWorld) location.getWorld()).getHandle();
 
-        CustomSkeleton customEntity = new CustomSkeleton(mcWorld);
+        CustomVillager customEntity = new CustomVillager(mcWorld);
         customEntity.setLocation(location.getX(), location.getY(),location.getZ(), location.getYaw(), location.getPitch());
 
         ((CraftLivingEntity) customEntity.getBukkitEntity()).setRemoveWhenFarAway(false);
@@ -29,10 +29,10 @@ public class CustomSkeleton extends EntitySkeleton {
         customEntity.setCustomName("");
         customEntity.setCustomNameVisible(false);
 
-        return (Skeleton) customEntity.getBukkitEntity();
+        return (Villager) customEntity.getBukkitEntity();
     }
 
-    public CustomSkeleton(World world) {
+    public CustomVillager(World world) {
         super(world);
         ((Navigation)this.getNavigation()).b(true);
         this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
@@ -45,7 +45,6 @@ public class CustomSkeleton extends EntitySkeleton {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(35.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0);
-        this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(0);
     }
 
     @Override
@@ -103,15 +102,6 @@ public class CustomSkeleton extends EntitySkeleton {
         this.bs().g();
     }
 
-    //stop damage
-    @Override
-    public void a(EntityLiving entityliving, float f) {
-        return;
-    }
-
-    @Override
-    public void n() { }
-
     //stop fire
     @Override
     public void setOnFire(int i) { }
@@ -140,6 +130,5 @@ public class CustomSkeleton extends EntitySkeleton {
     protected String bp() {
         return "";
     }
-
 
 }

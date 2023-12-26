@@ -1,4 +1,4 @@
-package uk.nstr.nms.navigation;
+package dev.nstruck.mobutil.navigation;
 
 import org.bukkit.Location;
 import org.bukkit.World;

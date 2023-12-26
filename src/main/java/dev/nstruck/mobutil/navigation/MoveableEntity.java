@@ -1,6 +1,5 @@
-package uk.nstr.nms.navigation;
+package dev.nstruck.mobutil.navigation;
 
-import net.minecraft.server.v1_8_R3.World;
 import org.bukkit.Location;
 
 public interface MoveableEntity {

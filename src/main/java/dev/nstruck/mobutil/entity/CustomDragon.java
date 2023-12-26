@@ -1,5 +1,10 @@
-package uk.nstr.nms.entity;
+package dev.nstruck.mobutil.entity;
 
+import dev.nstruck.mobutil.event.CustomDragonBlockEvent;
+import dev.nstruck.mobutil.event.CustomDragonCollideEvent;
+import dev.nstruck.mobutil.event.CustomEntityClickEvent;
+import dev.nstruck.mobutil.navigation.MoveableEntity;
+import dev.nstruck.mobutil.navigation.NavigationPoint;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,11 +17,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.PluginManager;
-import uk.nstr.nms.event.CustomDragonBlockEvent;
-import uk.nstr.nms.event.CustomDragonCollideEvent;
-import uk.nstr.nms.event.CustomEntityClickEvent;
-import uk.nstr.nms.navigation.MoveableEntity;
-import uk.nstr.nms.navigation.NavigationPoint;
 
 import java.util.ArrayList;
 import java.util.List;

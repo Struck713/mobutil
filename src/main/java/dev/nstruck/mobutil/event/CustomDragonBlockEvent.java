@@ -1,31 +1,30 @@
-package uk.nstr.nms.event;
+package dev.nstruck.mobutil.event;
 
+import dev.nstruck.mobutil.entity.CustomDragon;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import uk.nstr.nms.entity.CustomDragon;
 
 import java.util.List;
 
-public class CustomDragonCollideEvent extends Event {
+public class CustomDragonBlockEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
     private CustomDragon entity;
-    private Player player;
+    private List<Block> collidedWith;
 
-    public CustomDragonCollideEvent(CustomDragon entity, Player player) {
+    public CustomDragonBlockEvent(CustomDragon entity, List<Block> collidedWith) {
         this.entity = entity;
-        this.player = player;
+        this.collidedWith = collidedWith;
     }
 
     public CustomDragon getEntity() {
         return entity;
     }
 
-    public Player getPlayer() {
-        return player;
+    public List<Block> getCollidedWith() {
+        return collidedWith;
     }
 
     public HandlerList getHandlers() {

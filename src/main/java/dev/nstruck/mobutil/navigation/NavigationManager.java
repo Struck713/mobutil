@@ -1,6 +1,5 @@
-package uk.nstr.nms.navigation;
+package dev.nstruck.mobutil.navigation;
 
-import net.minecraft.server.v1_8_R3.Navigation;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
